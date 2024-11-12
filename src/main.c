@@ -11,7 +11,7 @@
 #include "keyboard.h"
 #include "timer.h"
 
-int x = 34, y = 12;
+int x = 32, y = 10;
 int incX = 1, incY = 1;
 
 void printHello(int nextX, int nextY)
