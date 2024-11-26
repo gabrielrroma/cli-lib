@@ -7,28 +7,8 @@ Jogo criado com intuito de apresentar na faculdade para a cadeira de Programaç�
 - Gabriel Ferreira Ferraz
 
 # Compilação
-## Passo 1: Acesso ao Diretório
 
-Abra um terminal e navegue até o diretório onde os arquivos do Snake Game estão localizados usando o comando cd:
-
-cd seu/caminho/para/SnakeGame/ 
-
-## Passo 2: Compilação
-
-Use o compilador GCC para compilar todos os arquivos-fonte .c presentes na pasta src, e especifique o diretório de inclusão para os arquivos de cabeçalho na pasta include. Isso pode ser feito com o seguinte comando:
-
-gcc ./src/*.c -I./include -o change-me
-
-'gcc: Invoca o compilador GCC.
-'./src/*.c: Compila todos os arquivos .c dentro da pasta src.
-'-I./include: Especifica a localização dos arquivos de cabeçalho na pasta include.
-'-o change-me: Define o nome do arquivo de saída como change-me. Você pode alterar change-me para o nome desejado do executável.
-
-## Passo 3: Execução
-
-./change-me
-
-Substitua change-me pelo nome que você definiu no passo anterior, se necessário.
+No replit, abra o Shell e digite "make" e após o build do jogo, digite "make run"
 
 # Lista de funções
 
