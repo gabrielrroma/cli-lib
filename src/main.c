@@ -98,3 +98,31 @@ void initializeSnake() {
 void freeSnake() {
     free(snake);
 }
+
+// geracao da comida de forma aleatoria no mapa
+void generateFood() {
+	
+	foodX = rand() % (MAXX - MINX -1) + MINX + 1;
+	foodY = rand() % (MAXY - MINY -1) + MINY + 1;
+    score += 10;
+}
+
+// desenho da comida :/
+void drawFood() {
+	screenGotoxy(foodX, foodY);
+	printf("%c", FOOD_CHAR);
+}
+
+void clearSnakeTail() {
+	for (int i = snakeLength; i < SNAKE_MAX_LENGTH; i++) {
+		snake[i].x = 0;
+		snake[i].y = 0;
+	}
+}
+
+void drawSnake() {
+	for(int i = 0; i < snakeLength; i++) {
+        screenGotoxy(snake[i].x, snake[i].y);
+        printf("%c", SNAKE_BODY);
+	}
+}
