@@ -126,3 +126,54 @@ void drawSnake() {
         printf("%c", SNAKE_BODY);
 	}
 }
+
+void moveSnake() {
+
+	int tailX = snake[snakeLength - 1].x;
+	int tailY = snake[snakeLength - 1].y;
+
+	for(int i = snakeLength - 1; i > 0; i--) {
+		snake[i] = snake[i-1];
+	}
+// base do direcionamento , definindo se ela vai pra cima ou pra baixo pro lado ou pro outro
+    switch (snakeDirection) {
+        case 1:
+            snake[0].x = (snake[0].x + 1 > MAXX - 1) ? MINX + 1 : snake[0].x + 1;
+            break;
+        case 2:
+            snake[0].x = (snake[0].x - 1 < MINX + 1) ? MAXX - 1 : snake[0].x - 1;
+            break;
+        case 3:
+            snake[0].y = (snake[0].y - 1 < MINY + 1) ? MAXY - 1 : snake[0].y - 1;
+            break;
+        case 4:
+            snake[0].y = (snake[0].y + 1 > MAXY - 1) ? MINY + 1 : snake[0].y + 1;
+            break;
+    }
+
+	screenGotoxy(tailX, tailY);
+	printf("%c", EMPTY_CHAR);
+}
+// direcionamento no teclado ! 
+void handleInput() {
+    if (keyhit()) {
+        int ch = readch();
+        switch (ch) {
+            case 'w':
+                if (snakeDirection != 4) snakeDirection = 3;
+                break;
+            case 's':
+                if (snakeDirection != 3) snakeDirection = 4;
+                break;
+            case 'a':
+                if (snakeDirection != 1) snakeDirection = 2;
+                break;
+            case 'd':
+                if (snakeDirection != 2) snakeDirection = 1;
+                break;
+            case 27: 
+                snakeLength = 0; 
+                break;
+        }
+    }
+}
