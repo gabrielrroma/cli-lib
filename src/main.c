@@ -127,6 +127,23 @@ void drawSnake() {
 	}
 }
 
+void drawBorders() {
+	screenSetColor(WHITE, BLACK);
+	for(int i = MINX; i <= MAXX; i++) {
+		screenGotoxy(i, MINY);
+		printf("%c", BORDER_CHAR);
+		screenGotoxy(i, MAXY);
+		printf("%c", BORDER_CHAR);
+	}
+
+	for(int i = MINY; i <= MAXY; i++) {
+		screenGotoxy(MINX, i);
+		printf("%c", BORDER_CHAR);
+		screenGotoxy(MAXX, i);
+		printf("%c", BORDER_CHAR);
+	}
+}
+
 void moveSnake() {
 
 	int tailX = snake[snakeLength - 1].x;
@@ -253,4 +270,35 @@ int showMenu() {
     printf("2. Sair\n");
     scanf("%d",&menuChoice);
     return menuChoice;
+}
+
+int main() {
+    initializeGame();
+    loadRanking();
+
+    int choice;
+
+    do {
+        choice = showMenu();
+
+        switch (choice) {
+            case 1:
+			    screenClear();
+                initializeSnake();
+                generateFood();
+                gameLoop();
+                freeSnake();
+                break;
+            case 2:
+                snakeLength = 0;
+                break;
+            default:
+                printf("Opção Inválida.\n\n");
+        }
+
+    } while (snakeLength > 0);
+
+    endGame();
+
+    return 0;
 }
