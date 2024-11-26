@@ -69,3 +69,32 @@ void showRanking() {
     }
     printf("\n");
 }
+
+//funcao de atualizar o score de acordo com a quantidade de comida (10 em 10)
+void updateScore() {
+    screenGotoxy(MINX, MAXY);
+    printf("Pontuação: %d\n", score);
+}
+
+void initializeGame() {
+    screenInit(0);
+    keyboardInit();
+    timerInit(60);
+    score = -10;
+}
+
+void endGame() {
+    keyboardDestroy();
+    screenDestroy();
+    timerDestroy();
+}
+
+void initializeSnake() {
+    snake = (SnakeSegment*)malloc(SNAKE_MAX_LENGTH * sizeof(SnakeSegment));
+    snake[0].x = MAXX / 2;
+    snake[0].y = MAXY / 2;
+}
+
+void freeSnake() {
+    free(snake);
+}
