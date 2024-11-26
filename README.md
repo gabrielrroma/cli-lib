@@ -1,20 +1,70 @@
-# cli-lib
-Command Line Interface library, for developing CLI applications and games in C. It has functions to access keyboard, screen and manage timing tasks.
+# Snake Game
+Jogo criado com intuito de apresentar na faculdade para a cadeira de Programação Imperativa e Funcional
 
-## Requirements
-- This library works with the follwing OS:
-   - Linux based (Ubuntu, etc)
-   - MacOS
-- It is necessary to have GCC installed.
+## Alunos
+- Gabriel Reinaldo Roma
+- Ícaro Barros
+- Gabriel Ferreira Ferraz
 
-## Usage 
-The file `main.c` has an example of how to use the Keyboard, Screen nd Timer functions. 
+# Compilação
+## Passo 1: Acesso ao Diretório
 
-To build this example via command line, just switch to library root directory and type the following command:
-```
-$ gcc ./src/*.c -I./include -o cli-lib-example
-```
+Abra um terminal e navegue até o diretório onde os arquivos do Snake Game estão localizados usando o comando cd:
 
-To use this library to create your own apps, simply add source and header files to your project and compile it together with your own code, 
-replacing the main.c file to your own.
+cd seu/caminho/para/SnakeGame/ 
+
+## Passo 2: Compilação
+
+Use o compilador GCC para compilar todos os arquivos-fonte .c presentes na pasta src, e especifique o diretório de inclusão para os arquivos de cabeçalho na pasta include. Isso pode ser feito com o seguinte comando:
+
+gcc ./src/*.c -I./include -o change-me
+
+'gcc: Invoca o compilador GCC.
+'./src/*.c: Compila todos os arquivos .c dentro da pasta src.
+'-I./include: Especifica a localização dos arquivos de cabeçalho na pasta include.
+'-o change-me: Define o nome do arquivo de saída como change-me. Você pode alterar change-me para o nome desejado do executável.
+
+## Passo 3: Execução
+
+./change-me
+
+Substitua change-me pelo nome que você definiu no passo anterior, se necessário.
+
+# Lista de funções
+
+loadRanking() = carregamento do ranking do jogo
+
+saveRanking() = salvando os rankings gerados
+
+addPlayerToRanking() = adiciona o jogador atual ao ranking
+
+showRanking() = mostra o ranking das 3 melhores posicoes 
+
+updateScore() = atualizacao do score (de 10 em 10)
+
+initializeGame() = funcao base para inicializar o jogo 
+
+endGame() = funcao base para fechar o jogo
+
+initializeSnake() = inicializacao da cobra no mapa
+
+freeSnake() = liberacao de memoria da cobra
+
+generateFood() = geracao de comida em partes aleatorias do mapa
+
+ drawFood() = desenho da comida
+ 
+ drawSnake() = desenho da cobra
+ 
+ drawBorders() = desenho das bordas do jogo
+ 
+ moveSnake() = movimentacao base da cobra 
+ 
+ handleInput() = atribuimos a movimentacao criada na funcao anterior para as teclas
+ 
+ checkCollision() = colisao da cobra com parede ou ela mesma e caso tenha comido puxamos novamente a funcao generateFood 
+ 
+ gameLoop() = loop do game, caso queira reiniciar 
+ 
+ showMenu() = menu do jogo com as escolhas: jogar e sair
 
