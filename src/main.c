@@ -177,3 +177,80 @@ void handleInput() {
         }
     }
 }
+
+int checkCollision() {
+    if (snake[0].x <= MINX || snake[0].x >= MAXX || snake[0].y <= MINY || snake[0].y >= MAXY) {
+        return 1; 
+    }
+
+    for (int i = 1; i < snakeLength; i++) {
+        if (i < SNAKE_MAX_LENGTH && snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+            return 1; 
+        }
+    }
+// cobra aumentar de tamanho pois comeu
+	if (snake[0].x == foodX && snake[0].y == foodY) {
+		if(snakeLength < SNAKE_MAX_LENGTH) {
+			snake[snakeLength].x = snake[snakeLength - 1].x;
+			snake[snakeLength].y = snake[snakeLength - 1].y;
+			snakeLength++;	
+		}
+		generateFood();
+	}
+	
+
+    return 0;
+}
+
+void checkCollisionAndMove() {
+    moveSnake();
+    drawBorders();
+    drawFood();
+    drawSnake();
+    updateScore();
+    screenUpdate();
+
+    if (checkCollision()) {
+        snakeLength = 0; 
+    }
+}
+// reiniciar o jogo
+void gameLoop() {
+    int playAgain = 1;
+
+    while(playAgain) {
+        while (snakeLength > 0) {
+            handleInput();
+
+            if (timerTimeOver() == 1) {
+                checkCollisionAndMove();
+            }
+        }
+//inputs e prints do ranking 
+        printf("GAME OVER!!! Pontuação final: %d\n", score);
+        showRanking();
+        printf("Digite seu nome para o ranking: ");
+        char name[30];
+        scanf("%s", name);
+        addPlayerToRanking(name, score);
+        saveRanking();
+        printf("Deseja jogar novamente? (1-SIM, 0-NÃO): ");
+        scanf("%d",&playAgain);
+
+        if(playAgain == 1) {
+            snakeLength = 1;
+            endGame();
+            initializeGame();
+            score = 0;
+        }
+    
+    }
+}
+//menu base
+int showMenu() {
+    int menuChoice;
+    printf("1. Iniciar Jogo\n");
+    printf("2. Sair\n");
+    scanf("%d",&menuChoice);
+    return menuChoice;
+}
